@@ -5,6 +5,10 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Signaturit.LobbyWars.Api", "Signaturit.LobbyWars.Api\Signaturit.LobbyWars.Api.csproj", "{2BA4360A-1BB5-4ACD-8A16-1A29686B5DBC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{8678B35E-61A2-4B0F-9A7E-33C4DF340010}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Signaturit.LobbyWars.Core", "Signaturit.LobbyWars.Core\Signaturit.LobbyWars.Core.csproj", "{CF238ABC-B8B3-49B9-981F-3FAF9D3F0EA8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +19,16 @@ Global
 		{2BA4360A-1BB5-4ACD-8A16-1A29686B5DBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BA4360A-1BB5-4ACD-8A16-1A29686B5DBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BA4360A-1BB5-4ACD-8A16-1A29686B5DBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF238ABC-B8B3-49B9-981F-3FAF9D3F0EA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF238ABC-B8B3-49B9-981F-3FAF9D3F0EA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF238ABC-B8B3-49B9-981F-3FAF9D3F0EA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF238ABC-B8B3-49B9-981F-3FAF9D3F0EA8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CF238ABC-B8B3-49B9-981F-3FAF9D3F0EA8} = {8678B35E-61A2-4B0F-9A7E-33C4DF340010}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A91BF867-C56B-45D5-871A-8B82D7D2D05D}
