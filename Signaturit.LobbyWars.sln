@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Signaturit.LobbyWars.Api", "Signaturit.LobbyWars.Api\Signaturit.LobbyWars.Api.csproj", "{2BA4360A-1BB5-4ACD-8A16-1A29686B5DBC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2BA4360A-1BB5-4ACD-8A16-1A29686B5DBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BA4360A-1BB5-4ACD-8A16-1A29686B5DBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BA4360A-1BB5-4ACD-8A16-1A29686B5DBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BA4360A-1BB5-4ACD-8A16-1A29686B5DBC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A91BF867-C56B-45D5-871A-8B82D7D2D05D}
+	EndGlobalSection
+EndGlobal
