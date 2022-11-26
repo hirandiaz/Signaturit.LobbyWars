@@ -7,14 +7,20 @@ namespace Signaturit.LobbyWars.Domain.Specifications
     {
 
         /// <summary>
-        /// 
+        ///  IsSatisfiedBy
         /// </summary>
         /// <param name="contract"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
+        /// <returns>
+        /// Return true if a number of 'missing signature' is zero or one; 
+        /// otherwise return false.
+        /// </returns>
         public bool IsSatisfiedBy(Contract contract)
         {
-            throw new NotImplementedException();
+            var count = contract.Signatures
+                            .Where(signature => signature.Role == SignatureRole.Missing)
+                            .Count();
+
+            return count <= 1;
         }
     }
 }
