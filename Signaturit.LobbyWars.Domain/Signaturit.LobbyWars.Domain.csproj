@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Signaturit.LobbyWars.Core\Signaturit.LobbyWars.Core.csproj" />
+  </ItemGroup>
+
 </Project>
