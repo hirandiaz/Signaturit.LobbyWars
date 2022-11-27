@@ -10,8 +10,4 @@
     <ProjectReference Include="..\Signaturit.LobbyWars.Core\Signaturit.LobbyWars.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Data\Queries\" />
-  </ItemGroup>
-
 </Project>
