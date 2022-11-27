@@ -9,6 +9,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{8678B35E-6
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Signaturit.LobbyWars.Core", "Signaturit.LobbyWars.Core\Signaturit.LobbyWars.Core.csproj", "{CF238ABC-B8B3-49B9-981F-3FAF9D3F0EA8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Signaturit.LobbyWars.Domain", "Signaturit.LobbyWars.Domain\Signaturit.LobbyWars.Domain.csproj", "{AA65A152-A154-405F-9DFA-FA1D1EBFA069}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Signaturit.LobbyWars.Application", "Signaturit.LobbyWars.Application\Signaturit.LobbyWars.Application.csproj", "{43030FDC-E49B-4C9D-B5FD-1E5AD8D64870}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Signaturit.LobbyWars.Test", "Signaturit.LobbyWars.Test\Signaturit.LobbyWars.Test.csproj", "{5C0DE1FC-763C-4DFF-A552-8E263E498161}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{82DA502C-F71E-4C70-9424-92C7C7557448}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,12 +31,25 @@ Global
 		{CF238ABC-B8B3-49B9-981F-3FAF9D3F0EA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF238ABC-B8B3-49B9-981F-3FAF9D3F0EA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF238ABC-B8B3-49B9-981F-3FAF9D3F0EA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA65A152-A154-405F-9DFA-FA1D1EBFA069}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA65A152-A154-405F-9DFA-FA1D1EBFA069}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA65A152-A154-405F-9DFA-FA1D1EBFA069}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA65A152-A154-405F-9DFA-FA1D1EBFA069}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43030FDC-E49B-4C9D-B5FD-1E5AD8D64870}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43030FDC-E49B-4C9D-B5FD-1E5AD8D64870}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43030FDC-E49B-4C9D-B5FD-1E5AD8D64870}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43030FDC-E49B-4C9D-B5FD-1E5AD8D64870}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C0DE1FC-763C-4DFF-A552-8E263E498161}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C0DE1FC-763C-4DFF-A552-8E263E498161}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C0DE1FC-763C-4DFF-A552-8E263E498161}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C0DE1FC-763C-4DFF-A552-8E263E498161}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{CF238ABC-B8B3-49B9-981F-3FAF9D3F0EA8} = {8678B35E-61A2-4B0F-9A7E-33C4DF340010}
+		{5C0DE1FC-763C-4DFF-A552-8E263E498161} = {82DA502C-F71E-4C70-9424-92C7C7557448}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A91BF867-C56B-45D5-871A-8B82D7D2D05D}
