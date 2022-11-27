@@ -7,6 +7,7 @@ namespace Signaturit.LobbyWars.Test
 {
     public class ContractShould
     {
+
         [Fact]
         public void IsValidContract_IfHaveMoreThanOneMissingSignature_ThrowException()
         {
@@ -24,14 +25,16 @@ namespace Signaturit.LobbyWars.Test
             Assert.Throws<InvalidOperationException>(action);
         }
 
-        [Fact]
-        public void IsValidContract_IfHaveZeroOrOneMissingSignature_ReturnTrue()
+        [Theory]
+        [InlineData(SignatureRole.Missing)]
+        [InlineData(SignatureRole.Validator)]
+        public void IsValidContract_IfHaveZeroOrOneMissingSignature_ReturnTrue(SignatureRole signatureRole)
         {
             IsValidContractSpecification specification = new();
-            Signature missingSignature = new(SignatureRole.Missing);
+            Signature signature = new(signatureRole);
             Contract contract = new();
 
-            contract.AddSignature(missingSignature);
+            contract.AddSignature(signature);
 
             bool isValid = specification.IsSatisfiedBy(contract);
 
