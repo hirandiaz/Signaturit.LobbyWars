@@ -16,6 +16,9 @@ namespace Signaturit.LobbyWars.Domain.Specifications
         /// </returns>
         public bool IsSatisfiedBy(Contract contract)
         {
+            if (contract is not { } || !contract.Signatures.Any())
+                return false;
+
             var count = contract.Signatures
                             .Where(signature => signature.Role == SignatureRole.Missing)
                             .Count();
