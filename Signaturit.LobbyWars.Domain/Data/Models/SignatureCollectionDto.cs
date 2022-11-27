@@ -2,6 +2,6 @@
 
 namespace Signaturit.LobbyWars.Domain.Data.Models
 {
-    public record SignatureCollectionDto(params SignatureRole[] Roles);
+    public record SignatureCollectionDto(IEnumerable<SignatureRole> Roles);
 
 }

@@ -1,8 +1,7 @@
 ﻿using MediatR;
 using Signaturit.LobbyWars.Core.Data.Commands;
-using Signaturit.LobbyWars.Core.Data.Routers;
 
-namespace DhubSolutions.Core.Domain.Data.Routers
+namespace Signaturit.LobbyWars.Core.Data.Routers
 {
     /// <summary>
     /// 
