@@ -5,7 +5,7 @@
     /// </summary>
     public enum SignatureRole
     {
-        Missing = 0,
+        Missing = -1,
         Validator = 1,
         Notary = 2,
         King = 5
