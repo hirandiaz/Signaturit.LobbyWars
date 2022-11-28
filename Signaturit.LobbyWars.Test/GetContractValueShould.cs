@@ -28,6 +28,7 @@ namespace Signaturit.LobbyWars.Test
         [InlineData(SignatureRole.King, SignatureRole.Validator, 5)]
         [InlineData(SignatureRole.King, SignatureRole.Notary, 7)]
         [InlineData(SignatureRole.Notary, SignatureRole.Validator, 3)]
+        [InlineData(SignatureRole.Missing, SignatureRole.Validator, 1)]
         public void GetValue_IfContractIsSignedMultiplesRoles_ReturnExpectedValue(
             SignatureRole role1, SignatureRole role2, int expectedValue)
         {
