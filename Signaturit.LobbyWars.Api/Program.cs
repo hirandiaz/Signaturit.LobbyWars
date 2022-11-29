@@ -2,6 +2,7 @@ using MediatR;
 using Signaturit.LobbyWars.Api;
 using Signaturit.LobbyWars.Api.Models;
 using Signaturit.LobbyWars.Application.Mappings;
+using Signaturit.LobbyWars.Application.Services;
 using Signaturit.LobbyWars.Core.Data.Models;
 using Signaturit.LobbyWars.Core.Data.Routers;
 using Signaturit.LobbyWars.Domain.Data.Commands;
@@ -32,77 +33,24 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapPost("/winningContract", async (ContractInputVm inputVm, ICommandRouter commandRouter, IQueryRouter queryRouter) =>
+app.MapPost("/winningContract", async (ContractInputVm inputVm, ISignaturitService signaturitService) =>
 {
     var (signatures1, signatures2) = inputVm;
 
-    IEnumerable<SignatureRole> signatureRoles1 = SignaturitMapper.MapToSignatureRole(signatures1);
-    IEnumerable<SignatureRole> signaturesRoles2 = SignaturitMapper.MapToSignatureRole(signatures2);
-
-    CreateContractCommand createContract1 = new(new SignatureCollectionDto(signatureRoles1));
-    CreateContractCommand createContract2 = new(new SignatureCollectionDto(signaturesRoles2));
-
-    CommandResult<Contract> commandResult1 = await commandRouter.ExecuteAsync(createContract1);
-    CommandResult<Contract> commandResult2 = await commandRouter.ExecuteAsync(createContract2);
-
-    if (commandResult1.IsSuccess && commandResult2.IsSuccess)
-    {
-        Contract contract1 = commandResult1.Item;
-        Contract contract2 = commandResult2.Item;
-
-        GetWinningContractQuery query = new();
-
-        query
-        .AddParameter("contract1", contract1)
-        .AddParameter("contract2", contract2);
-
-        Contract contract = await queryRouter.QueryOneAsync(query).ConfigureAwait(false);
-
-        if (contract is { })
-        {
-            IEnumerable<char> contractStr = SignaturitMapper.MapToChar(contract);
-
-            return Results.Ok(contractStr);
-        }
-    }
-    return Results.BadRequest();
+    IEnumerable<char> contractStr = await signaturitService.GetWinningContract(signatures1, signatures2);
+    return contractStr is { } ?
+    Results.Ok(contractStr) : Results.BadRequest();
 })
 .WithName("GeWinningContract");
 
-app.MapPost("/minimumSignature", async (ContractInputVm inputVm, ICommandRouter commandRouter, IQueryRouter queryRouter) =>
+app.MapPost("/minimumSignature", async (ContractInputVm inputVm, ISignaturitService signaturitService) =>
 {
     var (signatures1, signatures2) = inputVm;
 
-    IEnumerable<SignatureRole> signatureRoles1 = SignaturitMapper.MapToSignatureRole(signatures1);
-    IEnumerable<SignatureRole> signaturesRoles2 = SignaturitMapper.MapToSignatureRole(signatures2);
+    char? signatureStr = await signaturitService.GetMinimumSignature(signatures1, signatures2);
 
-    CreateContractCommand createContract1 = new(new SignatureCollectionDto(signatureRoles1));
-    CreateContractCommand createContract2 = new(new SignatureCollectionDto(signaturesRoles2));
-
-    CommandResult<Contract> commandResult1 = await commandRouter.ExecuteAsync(createContract1);
-    CommandResult<Contract> commandResult2 = await commandRouter.ExecuteAsync(createContract2);
-
-    if (commandResult1.IsSuccess && commandResult2.IsSuccess)
-    {
-        Contract contract1 = commandResult1.Item;
-        Contract contract2 = commandResult2.Item;
-
-        GetMinimumSignatureQuery query = new();
-
-        query
-        .AddParameter("contract1", contract1)
-        .AddParameter("contract2", contract2);
-
-        Signature signature = await queryRouter.QueryOneAsync(query).ConfigureAwait(false);
-
-        if (signature is { })
-        {
-            char signatureStr = SignaturitMapper.MapToChar(signature.Role);
-
-            return Results.Ok(signatureStr);
-        }
-    }
-    return Results.BadRequest();
+    return signatureStr is { } ?
+    Results.Ok(signatureStr) : Results.BadRequest();
 })
 .WithName("GetMinimumSignature");
 

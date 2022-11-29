@@ -1,4 +1,5 @@
-﻿using Signaturit.LobbyWars.Core.Data.Routers;
+﻿using Signaturit.LobbyWars.Application.Services;
+using Signaturit.LobbyWars.Core.Data.Routers;
 using Signaturit.LobbyWars.Domain.Services;
 using Signaturit.LobbyWars.Domain.Services.Base;
 
@@ -12,11 +13,8 @@ namespace Signaturit.LobbyWars.Api
                 .AddScoped<ICommandRouter, CommandRouter>()
                 .AddScoped<IQueryRouter, QueryRouter>()
                 .AddScoped<IGetContractValueService, GetContractValueService>()
-                .AddScoped<IGetMinimumSigntureService, GetMinimumSignatureService>();
-
-
-
-
+                .AddScoped<IGetMinimumSigntureService, GetMinimumSignatureService>()
+                .AddScoped<ISignaturitService, SignaturitService>();
 
             return services;
         }
