@@ -23,6 +23,11 @@
         public IEnumerable<Signature> Signatures => _signatures;
 
         /// <summary>
+        /// Return true if the contract lacks one signature
+        /// </summary>
+        public bool MissingSignature { get => _missingSignature;}
+
+        /// <summary>
         /// Add a new signature to the contract
         /// </summary>
         /// <param name="signature"></param>

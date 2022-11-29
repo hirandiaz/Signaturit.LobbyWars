@@ -4,7 +4,7 @@ namespace Signaturit.LobbyWars.Domain.Services.Base
 {
     public interface IGetMinimumSigntureService
     {
-        SignatureRole GetSigntureRole(Contract contract);
+        SignatureRole GetSigntureRole(Contract contract, int opponentContractValue);
     }
 
 }
