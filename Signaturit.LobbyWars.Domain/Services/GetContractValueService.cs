@@ -33,7 +33,7 @@ namespace Signaturit.LobbyWars.Domain.Services
             }
 
             int contractValue = signatures
-                .SkipWhile(signature => signature.Role == SignatureRole.Missing)
+                .Where(signature => signature.Role != SignatureRole.Missing)
                 .Sum(signature => (int)(signature.Role));
 
             return contractValue;

@@ -16,7 +16,6 @@ namespace Signaturit.LobbyWars.Application.Handlers.Queries
             _getContractValueService = getContractValueService;
         }
 
-
         public override async Task<QueryResult<Contract>> Handle(GetWinningContractQuery query, CancellationToken cancellationToken)
         {
             if (query.Parameters is not { } || !query.Parameters.Any())
