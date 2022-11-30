@@ -1,9 +1,10 @@
-﻿using Signaturit.LobbyWars.Application.Services;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Signaturit.LobbyWars.Application.Services;
 using Signaturit.LobbyWars.Core.Data.Routers;
 using Signaturit.LobbyWars.Domain.Services;
 using Signaturit.LobbyWars.Domain.Services.Base;
 
-namespace Signaturit.LobbyWars.Api
+namespace Signaturit.LobbyWars.Application.Extensions
 {
     public static class ServiceCollection
     {
