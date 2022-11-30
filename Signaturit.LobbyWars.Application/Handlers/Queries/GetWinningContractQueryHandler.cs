@@ -40,7 +40,10 @@ namespace Signaturit.LobbyWars.Application.Handlers.Queries
                 int contractValue1 = _getContractValueService.GetValue(contract1);
                 int contractValue2 = _getContractValueService.GetValue(contract2);
 
-                return contractValue1 >= contractValue2
+                if (contractValue1 == contractValue2)
+                    return new QueryResult<Contract>(new[] { contract1, contract2 });
+
+                return contractValue1 > contractValue2
                     ? new QueryResult<Contract>(new[] { contract1 })
                     : new QueryResult<Contract>(new[] { contract2 });
             }

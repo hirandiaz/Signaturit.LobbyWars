@@ -20,7 +20,7 @@ namespace Signaturit.LobbyWars.Application.Services
         }
 
 
-        public async Task<IEnumerable<char>> GetWinningContract(IEnumerable<char> signatures1, IEnumerable<char> signatures2)
+        public async Task<IEnumerable<char>?> GetWinningContract(IEnumerable<char> signatures1, IEnumerable<char> signatures2)
         {
             IEnumerable<SignatureRole> signatureRoles1 = SignaturitMapper.MapToSignatureRole(signatures1);
             IEnumerable<SignatureRole> signaturesRoles2 = SignaturitMapper.MapToSignatureRole(signatures2);
@@ -42,16 +42,22 @@ namespace Signaturit.LobbyWars.Application.Services
                 .AddParameter("contract1", contract1)
                 .AddParameter("contract2", contract2);
 
-                Contract contract = await queryRouter.QueryOneAsync(query).ConfigureAwait(false);
-
-                if (contract is { })
+                try
                 {
-                    IEnumerable<char> signatureStr = SignaturitMapper.MapToChar(contract);
+                    Contract contract = await queryRouter.QueryOneAsync(query).ConfigureAwait(false);
 
-                    return signatureStr;
+                    if (contract is { })
+                    {
+                        IEnumerable<char> signatureStr = SignaturitMapper.MapToChar(contract);
+
+                        return signatureStr;
+                    }
                 }
+                catch (Exception ex)
+                { }
+
             }
-            return Enumerable.Empty<char>();
+            return null;
         }
 
         public async Task<char?> GetMinimumSignature(IEnumerable<char> signatures1, IEnumerable<char> signatures2)
