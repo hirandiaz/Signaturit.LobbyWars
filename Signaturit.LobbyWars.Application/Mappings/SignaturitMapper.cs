@@ -14,8 +14,11 @@ namespace Signaturit.LobbyWars.Application.Mappings
             return signatureStr switch
             {
                 'N' => SignatureRole.Notary,
+                'n' => SignatureRole.Notary,
                 'V' => SignatureRole.Validator,
+                'v' => SignatureRole.Validator,
                 'K' => SignatureRole.King,
+                'k' => SignatureRole.King,
                 '#' => SignatureRole.Missing,
                 _ => throw new ArgumentOutOfRangeException($"{signatureStr} is no valid value"),
             };
