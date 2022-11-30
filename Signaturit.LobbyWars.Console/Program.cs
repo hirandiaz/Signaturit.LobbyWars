@@ -32,17 +32,17 @@ var case1 = () =>
     if (winningContract is { })
         Console.WriteLine($"The winner is: { new string(winningContract.ToArray())}\n");
     else
-        Console.WriteLine("no winning contract found");
+        Console.WriteLine("No winning contract found");
 };
 
 var case2 = () =>
 {
     char? minimalSignature = GetMinimalSignatureCase(host.Services).Result;
 
-    if (minimalSignature is { })
-        Console.WriteLine($"The minimal signature  is: {minimalSignature}\n");
+    if (minimalSignature is { } && minimalSignature is not '#')
+        Console.WriteLine($"The minimal signature is: {minimalSignature}\n");
     else
-        Console.WriteLine("minimal signature not found");
+        Console.WriteLine("The minimal signature was not found.");
 };
 
 while (true)

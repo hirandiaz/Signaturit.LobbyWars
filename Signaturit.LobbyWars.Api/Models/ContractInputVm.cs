@@ -1,4 +1,4 @@
 ﻿namespace Signaturit.LobbyWars.Api.Models
 {
-    public record ContractInputVm(char[] Contract1, char[] Contract2);
+    public record ContractInputVm(string Contract1, string Contract2);
 }

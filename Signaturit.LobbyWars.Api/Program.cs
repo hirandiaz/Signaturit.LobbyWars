@@ -32,7 +32,7 @@ app.MapPost("/winningContract", async (ContractInputVm inputVm, ISignaturitServi
 
     IEnumerable<char> contractStr = await signaturitService.GetWinningContract(signatures1, signatures2);
     return contractStr is { } ?
-    Results.Ok(contractStr) : Results.BadRequest();
+    Results.Ok(new string(contractStr.ToArray())) : Results.BadRequest("No winning contract found");
 })
 .WithName("GeWinningContract");
 
@@ -42,8 +42,8 @@ app.MapPost("/minimumSignature", async (ContractInputVm inputVm, ISignaturitServ
 
     char? signatureStr = await signaturitService.GetMinimumSignature(signatures1, signatures2);
 
-    return signatureStr is { } ?
-    Results.Ok(signatureStr) : Results.BadRequest();
+    return signatureStr is { } && signatureStr != '#' ?
+    Results.Ok(signatureStr) : Results.BadRequest("The minimal signature was not found.");
 })
 .WithName("GetMinimumSignature");
 
