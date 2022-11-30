@@ -62,6 +62,35 @@ namespace Signaturit.LobbyWars.Test
                 SignatureRole.Validator
             },
             SignatureRole.Notary)]
+        [InlineData(
+            new[]
+            {
+                SignatureRole.Validator,
+                SignatureRole.Missing,
+                SignatureRole.Validator
+            },
+            new[]
+            {
+                SignatureRole.Notary,
+                SignatureRole.Notary,
+                SignatureRole.Notary
+            },
+            SignatureRole.Missing)]
+        [InlineData(
+            new[]
+            {
+                SignatureRole.Notary,
+                SignatureRole.Notary,
+                SignatureRole.Notary
+            },
+            new[]
+            {
+                 SignatureRole.Validator,
+                SignatureRole.Missing,
+                SignatureRole.Validator
+            },
+            SignatureRole.Missing)]
+
         public async void Handle_IfPassTwoValidContract_ReturnExpectedResult(
             IEnumerable<SignatureRole> roles1, IEnumerable<SignatureRole> roles2, SignatureRole expectedRole)
         {

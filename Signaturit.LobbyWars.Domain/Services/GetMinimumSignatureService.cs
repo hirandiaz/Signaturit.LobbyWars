@@ -1,4 +1,5 @@
 ﻿using Signaturit.LobbyWars.Domain.Entities;
+using Signaturit.LobbyWars.Domain.Factories;
 using Signaturit.LobbyWars.Domain.Services.Base;
 
 namespace Signaturit.LobbyWars.Domain.Services
@@ -29,20 +30,37 @@ namespace Signaturit.LobbyWars.Domain.Services
                 SignatureRole.Notary,
                 SignatureRole.Validator };
 
-            int partialContractValue = _getContractValueService.GetValue(contract);
+            //load signature's contract
+            IEnumerable<Signature> signatures = contract.Signatures
+                        .Where(signature => signature.Role != SignatureRole.Missing);
 
             int minValue = int.MaxValue;
 
             foreach (SignatureRole signatureRole in signatureRoles)
             {
+                // create dummy signature collection
+                List<Signature> dummySignatures = new(signatures);
+
+                Signature dummySignature = new SignatureFactory(signatureRole).Create();
+
+                dummySignatures.Add(dummySignature);
+
+                //create dummy contract 
+                Contract dummyContract = new ContractFactory(dummySignatures).Create();
+
+                int dummyContractValue = _getContractValueService.GetValue(dummyContract);
+
                 int signatureRoleValue = (int)signatureRole;
-                if (signatureRoleValue < minValue && signatureRoleValue + partialContractValue > opponentContractValue)
+                if (signatureRoleValue < minValue && dummyContractValue > opponentContractValue)
                 {
                     minValue = signatureRoleValue;
                 }
             }
 
-            return (SignatureRole)minValue;
+            //if can't get the minimum signature, return the missing signature,
+            // otherwise, return the minimal signature. 
+            return minValue == int.MaxValue ?
+                SignatureRole.Missing : (SignatureRole)minValue;
         }
     }
 
