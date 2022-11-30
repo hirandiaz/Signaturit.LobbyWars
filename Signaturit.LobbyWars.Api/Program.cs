@@ -1,14 +1,7 @@
 using MediatR;
-using Signaturit.LobbyWars.Api;
 using Signaturit.LobbyWars.Api.Models;
-using Signaturit.LobbyWars.Application.Mappings;
+using Signaturit.LobbyWars.Application.Extensions;
 using Signaturit.LobbyWars.Application.Services;
-using Signaturit.LobbyWars.Core.Data.Models;
-using Signaturit.LobbyWars.Core.Data.Routers;
-using Signaturit.LobbyWars.Domain.Data.Commands;
-using Signaturit.LobbyWars.Domain.Data.Models;
-using Signaturit.LobbyWars.Domain.Data.Queries;
-using Signaturit.LobbyWars.Domain.Entities;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
