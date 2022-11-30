@@ -1,9 +1,19 @@
+using MediatR;
+using Signaturit.LobbyWars.Api.Models;
+using Signaturit.LobbyWars.Application.Extensions;
+using Signaturit.LobbyWars.Application.Services;
+using System.Reflection;
+
 var builder = WebApplication.CreateBuilder(args);
+var assemblies = LoadAssemblies();
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services
+    .AddMediatR(assemblies.ToArray(), conf => conf.AsScoped())
+    .AddSignaturitServices();
 
 var app = builder.Build();
 
@@ -16,28 +26,40 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
+app.MapPost("/winningContract", async (ContractInputVm inputVm, ISignaturitService signaturitService) =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    var (signatures1, signatures2) = inputVm;
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-       new WeatherForecast
-       (
-           DateTime.Now.AddDays(index),
-           Random.Shared.Next(-20, 55),
-           summaries[Random.Shared.Next(summaries.Length)]
-       ))
-        .ToArray();
-    return forecast;
+    IEnumerable<char> contractStr = await signaturitService.GetWinningContract(signatures1, signatures2);
+    return contractStr is { } ?
+    Results.Ok(new string(contractStr.ToArray())) : Results.BadRequest("No winning contract found");
 })
-.WithName("GetWeatherForecast");
+.WithName("GeWinningContract");
+
+app.MapPost("/minimumSignature", async (ContractInputVm inputVm, ISignaturitService signaturitService) =>
+{
+    var (signatures1, signatures2) = inputVm;
+
+    char? signatureStr = await signaturitService.GetMinimumSignature(signatures1, signatures2);
+
+    return signatureStr is { } && signatureStr != '#' ?
+    Results.Ok(signatureStr) : Results.BadRequest("The minimal signature was not found.");
+})
+.WithName("GetMinimumSignature");
 
 app.Run();
 
-internal record WeatherForecast(DateTime Date, int TemperatureC, string? Summary)
+
+#region Load Assemblies
+
+IEnumerable<Assembly> LoadAssemblies()
 {
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+    Assembly entryAssembly = Assembly.GetEntryAssembly();
+    List<Assembly> assemblies = new() { entryAssembly };
+    assemblies.AddRange(entryAssembly.GetReferencedAssemblies()
+           .Select(assemblyName => Assembly.Load(assemblyName)));
+    return assemblies;
+
 }
+
+#endregion
